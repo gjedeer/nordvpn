@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from bs4 import BeautifulSoup
+import pprint
 import requests
 import requests_cache
 import time

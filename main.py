@@ -5,7 +5,15 @@ import requests
 import sys
 import time
 
+def get_index():
+    r = requests.get("https://nordvpn.com/servers/")
+    if r.status_code == 200:
+        print "Received new index"
+        with open("index.html", "wb") as f:
+            f.write(r.content)
+
 def get_best_server():
+    get_index()
     servers = parser.parse(
         open("index.html").read(),
         ("Poland", "Germany", "Switzerland", "Czech Republic")
@@ -18,6 +26,7 @@ def get_best_server():
     good_servers = [s for s in servers if s.load == lowest_load and s.feature['openvpn_udp']]
     if len(good_servers) == 1:
         best_servers = good_servers
+        best_servers[0].probe_time = 0
     else:
         best_servers = []
         for server in good_servers:
