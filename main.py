@@ -8,7 +8,7 @@ import time
 def get_index():
     r = requests.get("https://nordvpn.com/servers/")
     if r.status_code == 200:
-        print "Received new index"
+        sys.stderr.write("Received new index\n")
         with open("index.html", "wb") as f:
             f.write(r.content)
 
@@ -19,7 +19,7 @@ def get_best_server():
         ("Poland", "Germany", "Switzerland", "Czech Republic")
     )
     if len(servers) == 0:
-        print "Could not find any servers"
+        sys.stderr.write("Could not find any servers\n")
         sys.exit(0)
     servers.sort(key=lambda x:x.load)
     lowest_load = servers[0].load
@@ -37,7 +37,7 @@ def get_best_server():
                 continue
             end_t = time.time()
             server.probe_time = end_t - start_t
-            print server.domain, server.load, server.probe_time
+            sys.stderr.write("%s\t%s\t%s\n" % (server.domain, server.load, server.probe_time))
             best_servers.append(server)
 
         best_servers.sort(key=lambda x:x.probe_time)
@@ -49,5 +49,4 @@ def get_best_server():
 
 if __name__ == "__main__":
     server = get_best_server()
-    print server
     print "sudo openvpn %s.udp1194.ovpn" % server.domain
