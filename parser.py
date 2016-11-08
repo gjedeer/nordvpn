@@ -50,7 +50,7 @@ def parse(html, parsed_countries=[]):
         if parsed_countries and country not in parsed_countries:
             continue
 
-        print group, country
+#        print group, country
 
         group_ajax_url = get_url(group, country)
         r = requests.get(group_ajax_url)
