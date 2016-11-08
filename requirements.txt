@@ -1,0 +1,8 @@
+beautifulsoup4==4.5.1
+pkg-resources==0.0.0
+psutil==4.3.1
+redis==2.10.5
+redislite==3.0.296
+requests==2.11.1
+requests-cache==0.4.12
+six==1.10.0

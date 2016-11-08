@@ -8,7 +8,7 @@ import time
 def get_best_server():
     servers = parser.parse(
         open("index.html").read(),
-        ("Poland", "Germany")
+        ("Poland", "Germany", "Switzerland", "Czech Republic")
     )
     if len(servers) == 0:
         print "Could not find any servers"
