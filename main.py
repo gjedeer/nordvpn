@@ -43,7 +43,7 @@ def get_best_server():
         best_servers.sort(key=lambda x:x.probe_time)
 
     for server in best_servers:
-        print server.domain, server.probe_time
+        sys.stderr.write(server.domain, server.probe_time)
 
     return best_servers[0]
 
