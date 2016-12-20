@@ -55,11 +55,13 @@ def parse(html, parsed_countries=[]):
         group_ajax_url = get_url(group, country)
         r = requests.get(group_ajax_url)
         servers_in_group = r.json()
+#        print r.text
         
         for server_dict in servers_in_group:
             server = Server(**server_dict)
             servers.append(server)
 
+#    print servers
     return servers
 
 
