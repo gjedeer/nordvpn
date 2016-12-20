@@ -44,11 +44,8 @@ def get_best_server():
     best_servers = get_best_servers(good_servers)
     if len(best_servers) == 0:
         good_servers = servers[:len(servers)/5]
-        sys.stdout.write("Shortlist failed - falling back to %d lowest loaded servers\n" % len(good_servers))
+        sys.stderr.write("Shortlist failed - falling back to %d lowest loaded servers\n" % len(good_servers))
         best_servers = get_best_servers(good_servers)
-
-#    for server in best_servers:
-#        sys.stderr.write("%s\t%s\n" % (server.domain, server.probe_time))
 
     return best_servers[0]
 
